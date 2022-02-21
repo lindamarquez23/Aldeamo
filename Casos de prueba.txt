@@ -34,3 +34,20 @@ Feature: Inicio de sesion
   when  el usuario desee ingresar nuevamnete información debe presionar la X del mensaje
   then  se debe ocultar el mensaje informativo y habilitar el boton Login
 		
+  Scenario Outline: Login usuario registrado
+  Given ingreso a la pantalla de login de la web Swag Labs
+	and ingreso usuario <Usuario>
+	and ingreso contraseña <Contraseña>
+  when  presiono el boton Login
+  then  debe permitir el ingreso al portal a la seccion de poductos
+  
+  Examples:
+  |usuario|contraseña|secret_sauce|
+  |standard_user|secret_sauce|
+  |locked_out_user|secret_sauce|
+  |problem_user|secret_sauce|
+  |performance_glitch_user|secret_sauce|
+
+
+
+  

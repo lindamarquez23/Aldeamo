@@ -1,0 +1,36 @@
+Feature: Inicio de sesion
+	Permitir el ingreso solo a usuarios 
+	registrados en el sitio web Swag Labs
+	
+  Scenario: Login con Usuario Registrado 
+  Given que ingreso a la pantalla de login de la web Swag Labs
+    and tengo un usuario registrado en la web Swag Labs
+	and no estoy logueado en la web Swag Labs
+	and ingreso usuario y contraseña
+  when  presiono el boton Login
+  then  debe permitir el ingreso al portal a la seccion de poductos
+  
+  Scenario: Login con Usuario NO Registrado
+  Given que ingreso a la pantalla de login de la web Swag Labs
+  when  ingreso usuario y/o contraseña incorrectos
+  then  No debe permitir el ingreso al portal y mostrar mensaje informativo 
+        "Epic sadface: Username and password do not match any user in this service"
+	
+
+  Scenario: Campo usuario vacio 
+  Given que los campo usuario y contraseña son obligatorios
+  when  el usuario deja el campo usuario vacio y presione el boton login
+  then  Debe mostrarse un mensaje informativo indicando que el campo es requerido
+        "Epic sadface: Username is required"
+		
+  Scenario: Campo password vacio 
+  Given dado que los campo usuario y contraseña son obligatorios
+  when  el usuario deje el campo password  vacio y presione el boton login
+  then  Debe mostrarse un mensaje informativo indicando que el campo es requerido
+        "Epic sadface: Password is required"
+		
+  Scenario: Validar mensaje informativo 
+  Given que se mostro un mensaje informativo
+  when  el usuario desee ingresar nuevamnete información debe presionar la X del mensaje
+  then  se debe ocultar el mensaje informativo y habilitar el boton Login
+		
